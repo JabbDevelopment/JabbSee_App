@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">JabbSee</string>
+    <string name="title_activity_main_java">MainActivityJava</string>
+
+    <string-array name="series">
+        <item>Arrow</item>
+        <item>Game Of Thrones</item>
+        <item>Once upon a time</item>
+    </string-array>
+
+    <string-array name="seasons">
+        <item>S4</item>
+        <item>S6</item>
+        <item>S7</item>
+    </string-array>
+
+
+    <string-array name="episodes">
+        <item>E10</item>
+        <item>E15</item>
+        <item>E20</item>
+    </string-array>
+
 </resources>
