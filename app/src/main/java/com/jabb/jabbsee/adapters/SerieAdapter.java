@@ -1,4 +1,4 @@
-package com.jabb.jabbsee;
+package com.jabb.jabbsee.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.jabb.jabbsee.R;
+
 public class SerieAdapter extends BaseAdapter {
 
-    LayoutInflater mInflater;
-    String[] series;
-    String[] seasons;
-    String[] episodes;
+    private LayoutInflater mInflater;
+    private String[] series;
+    private String[] seasons;
+    private String[] episodes;
 
 
     public SerieAdapter(Context context, String[] series, String[] seasons, String[] episodes){

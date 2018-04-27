@@ -1,7 +1,8 @@
-package com.jabb.jabbsee
+package com.jabb.jabbsee.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.jabb.jabbsee.R
 
 class MainActivity : AppCompatActivity() {
 
