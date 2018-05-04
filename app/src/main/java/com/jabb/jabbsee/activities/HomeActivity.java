@@ -24,7 +24,8 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolBar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setIcon(getDrawable(R.drawable.profile));
-        
+
+
 
     }
 

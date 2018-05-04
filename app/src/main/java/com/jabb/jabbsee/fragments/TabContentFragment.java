@@ -22,8 +22,8 @@ import java.util.List;
 
 public class TabContentFragment extends Fragment {
 
-    private ListView serieListView;
     private final String TAG = Constants.LOGGING_TAG_PREFIX + TabContentFragment.class.getSimpleName();
+    private ListView serieListView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,7 @@ public class TabContentFragment extends Fragment {
 
         serieListView = view.findViewById(R.id.serieListView);
 
-        List<Serie> serieList =  SerieListHelper.getActiveSerieList();
-        Log.d(TAG, "serielista: " +serieList.toString());
+        final List<Serie> serieList =  SerieListHelper.getActiveSerieList();
 
         SerieArrayAdapter serieArrayAdapter = new SerieArrayAdapter(getActivity(), R.layout.listview_detail, serieList);
         serieListView.setAdapter(serieArrayAdapter);
@@ -51,7 +50,7 @@ public class TabContentFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Intent showSerieSelectedActivity = new Intent(getActivity(), SerieSelectedActivity.class);
-                showSerieSelectedActivity.putExtra("om.jabb.SERIE_INDEX", position);
+                showSerieSelectedActivity.putExtra("com.jabb.SERIE_INDEX", serieList.get(position).getTitle());
                 startActivity(showSerieSelectedActivity);
             }
         });

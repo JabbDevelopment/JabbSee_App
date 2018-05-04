@@ -34,6 +34,8 @@ public class SerieArrayAdapter extends ArrayAdapter<Serie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Log.d(TAG, "i getView ");
+
         View view = mInflater.inflate(R.layout.listview_detail, parent, false);
         TextView titleTextView = view.findViewById(R.id.titleTextView);
         TextView seasonTextView = view.findViewById(R.id.seasonTextView);
@@ -44,7 +46,6 @@ public class SerieArrayAdapter extends ArrayAdapter<Serie> {
         titleTextView.setText(serie.getTitle());
         //seasonTextView.setText(serie.getSeason());
         //episodeTextView.setText(serie.getEpisode());
-        Log.d(TAG, "i getView " + serie.getTitle());
 
         return view;
     }
