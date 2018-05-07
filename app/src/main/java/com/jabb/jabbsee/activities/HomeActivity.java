@@ -7,16 +7,20 @@ import android.util.Log;
 
 import com.jabb.jabbsee.Constants;
 import com.jabb.jabbsee.R;
+import com.jabb.jabbsee.communicators.LibraryCommunicator;
 
 
 public class HomeActivity extends AppCompatActivity {
 
     private final String TAG = Constants.LOGGING_TAG_PREFIX + HomeActivity.class.getSimpleName();
+    LibraryCommunicator libraryCommunicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        libraryCommunicator = new LibraryCommunicator();
 
         Log.d(TAG,"Logging in HomeActivity");
 
@@ -25,8 +29,10 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setIcon(getDrawable(R.drawable.profile));
 
-
+        libraryCommunicator.init();
 
     }
+
+
 
 }
