@@ -1,23 +1,37 @@
 package com.jabb.jabbsee.helpers;
 
+import com.jabb.jabbsee.communicators.LibraryCommunicator;
 import com.jabb.jabbsee.models.Serie;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SerieListHelper {
 
-    private static List<Serie> serieList;
+    private static SerieListHelper listHelperInstance;
+    private List<Serie> serieList;
+    private LibraryCommunicator libraryCommunicator;
 
+    private SerieListHelper() {
+        libraryCommunicator = new LibraryCommunicator();
 
-    public static List<Serie> getActiveSerieList() {
-        //TODO
+        updateSerieList();
+    }
+
+    public static SerieListHelper getInstance(){
+        if(listHelperInstance == null)
+            listHelperInstance = new SerieListHelper();
+        return listHelperInstance;
+    }
+
+    public List<Serie> getActiveSerieList() {
         updateSerieList();
         return serieList;
     }
 
-    public static void updateSerieList(){
-        //TODO
+    public void updateSerieList(){
+        serieList = libraryCommunicator.getLibrary().getSeriesList();
+
+        /*
         serieList = new ArrayList<>();
         Serie serie1 = new Serie("Arrow");
         Serie serie2 = new Serie("Once upon a time");
@@ -35,6 +49,7 @@ public class SerieListHelper {
         serieList.add(serie6);
         serieList.add(serie7);
         serieList.add(serie8);
+        */
 
     }
 }

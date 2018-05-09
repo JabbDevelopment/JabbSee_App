@@ -40,7 +40,12 @@ public class TabContentFragment extends Fragment {
 
         serieListView = view.findViewById(R.id.serieListView);
 
-        final List<Serie> serieList =  SerieListHelper.getActiveSerieList();
+
+        final List<Serie> serieList =  SerieListHelper.getInstance().getActiveSerieList();
+        Log.d(TAG, "!!!!!!!!!!!!!!!!SerieList: " + serieList.toString());
+        for(Serie serie: serieList){
+            Log.d(TAG, "Serie title: " + serie.getTitle());
+        }
 
         SerieArrayAdapter serieArrayAdapter = new SerieArrayAdapter(getActivity(), R.layout.listview_detail, serieList);
         serieListView.setAdapter(serieArrayAdapter);

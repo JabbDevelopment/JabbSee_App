@@ -27,7 +27,7 @@ public class SerieArrayAdapter extends ArrayAdapter<Serie> {
 
         this.serieList = serieList;
 
-        Log.d(TAG, "I SerieArrayAdapter");
+        Log.d(TAG, "In SerieArrayAdapter");
 
     }
 
