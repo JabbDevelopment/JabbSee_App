@@ -1,8 +1,12 @@
 package com.jabb.jabbsee.helpers;
 
+import android.util.Log;
+
 import com.jabb.jabbsee.communicators.LibraryCommunicator;
 import com.jabb.jabbsee.models.Serie;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SerieListHelper {
@@ -13,8 +17,7 @@ public class SerieListHelper {
 
     private SerieListHelper() {
         libraryCommunicator = new LibraryCommunicator();
-
-        updateSerieList();
+        serieList = new ArrayList<>();
     }
 
     public static SerieListHelper getInstance(){
@@ -24,12 +27,16 @@ public class SerieListHelper {
     }
 
     public List<Serie> getActiveSerieList() {
-        updateSerieList();
         return serieList;
     }
 
-    public void updateSerieList(){
+    public void updateSerieList() throws IOException {
+
         serieList = libraryCommunicator.getLibrary().getSeriesList();
+
+        for(Serie s: serieList) {
+            Log.d("SerieListItem", s.getTitle());
+        }
 
         /*
         serieList = new ArrayList<>();
