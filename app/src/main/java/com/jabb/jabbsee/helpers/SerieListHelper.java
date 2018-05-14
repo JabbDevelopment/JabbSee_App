@@ -36,6 +36,8 @@ public class SerieListHelper {
 
         for(Serie s: serieList) {
             Log.d("SerieListItem", s.getTitle());
+            Log.d("SerieListItem", String.valueOf(s.getSeason()));
+            Log.d("SerieListItem", String.valueOf(s.getEpisode()));
         }
 
         /*

@@ -44,8 +44,8 @@ public class SerieArrayAdapter extends ArrayAdapter<Serie> {
         Serie serie = serieList.get(position);
 
         titleTextView.setText(serie.getTitle());
-        //seasonTextView.setText(serie.getSeason());
-        //episodeTextView.setText(serie.getEpisode());
+        seasonTextView.setText(String.valueOf(serie.getSeason()));
+        episodeTextView.setText(String.valueOf(serie.getEpisode()));
 
         return view;
     }
