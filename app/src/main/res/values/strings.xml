@@ -1,24 +1,29 @@
 <resources>
     <string name="app_name">JabbSee</string>
-    <string name="title_activity_main_java">MainActivityJava</string>
-
-    <string-array name="series">
-        <item>Arrow</item>
-        <item>Game Of Thrones</item>
-        <item>Once upon a time</item>
-    </string-array>
-
-    <string-array name="seasons">
-        <item>S4</item>
-        <item>S6</item>
-        <item>S7</item>
-    </string-array>
+    <string name="save_Button">Spara</string>
 
 
-    <string-array name="episodes">
-        <item>E10</item>
-        <item>E15</item>
-        <item>E20</item>
-    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user">Användarnamn </string>
+    <string name="prompt_password">Lösenord </string>
+    <string name="action_sign_in">Logga in </string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
 
 </resources>
+
+
+
