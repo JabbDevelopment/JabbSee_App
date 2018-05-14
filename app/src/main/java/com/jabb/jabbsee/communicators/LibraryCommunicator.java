@@ -4,10 +4,7 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jabb.jabbsee.Constants;
-import com.jabb.jabbsee.helpers.SerieListHelper;
 import com.jabb.jabbsee.models.Library;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.RequestParams;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,26 +15,10 @@ import java.net.URL;
 public class LibraryCommunicator {
 
         private final String TAG = Constants.LOGGING_TAG_PREFIX + LibraryCommunicator.class.getSimpleName();
-        private AsyncHttpClient client;
-        private RequestParams params;
-        private final String URL_ADDRESS = "http://10.0.2.2:8080/JabbSeeAPI/library";
+        private final String URL_ADDRESS = Constants.URL_ROOT_ADDRESS + "library";
 
-        public LibraryCommunicator(){
-            init();
-        }
+        public LibraryCommunicator(){}
 
-        public void init(){
-            Log.d(TAG,"LibraryCommunicator init()");
-            //client = new AsyncHttpClient();
-            //params = new RequestParams();
-        }
-
-        public void setParams(){
-            Log.d(TAG,"LibraryCommunicator setParams()");
-            params.put("serie", SerieListHelper.getInstance().getActiveSerieList().get(0));
-        }
-
-        Library library;
 
         public Library getLibrary() throws IOException {
             Log.d(TAG,"LibraryCommunicator getCommunication()");
@@ -66,6 +47,8 @@ public class LibraryCommunicator {
 
             Log.d(TAG + " Response from server ", response.toString());
 
+            Library library = null;
+
             //Converting to java Library object
             ObjectMapper objectMapper = new ObjectMapper();
             try {
@@ -75,46 +58,6 @@ public class LibraryCommunicator {
                 Log.e(TAG, "Failed to convert to java object");
             }
 
-
-            /*client.get(URL, new JsonHttpResponseHandler(){
-
-                @Override
-                public synchronized void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
-                    super.onSuccess(statusCode, headers, response);
-
-                    Log.d(TAG, "Success "+ statusCode + ": " +response);
-
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    try {
-                        Log.d(TAG, "Library before objectMapper: " + library.toString());
-                        library = objectMapper.readValue(response.toString(), Library.class);
-                        Log.d(TAG, "Library after objectMapper: " + library.toString());
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "------------Failed to convert to java object----------");
-                    }
-
-
-
-                    //library = new Gson().fromJson(response.toString(), Library.class);
-                    //Log.d(TAG, "after gson transformation!!!!!!!!!!!!!!!!!!!");
-                    //Log.d(TAG, "Library: " + library.toString());
-
-                }
-
-                @Override
-                public synchronized void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-
-                    Log.d(TAG, "Failure "+ statusCode + ": " +errorResponse);
-                    //library = null;
-                }
-            });
-            */
             return library;
         }
 }
