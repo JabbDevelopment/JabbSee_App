@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jabb.jabbsee.Constants;
 import com.jabb.jabbsee.models.Library;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,6 +29,15 @@ public class LibraryCommunicator {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(8000);
             connection.setRequestMethod("GET");
+
+            Base64 encoder = new Base64();
+
+            String userpassword = "lisa" + ":" + "lis";
+            String encodedAuthorization = encoder.encodeAsString(userpassword.getBytes());
+            connection.setRequestProperty("Authorization", "Basic "+
+                    encodedAuthorization);
+
+
 
             int responseCode = connection.getResponseCode();
 
