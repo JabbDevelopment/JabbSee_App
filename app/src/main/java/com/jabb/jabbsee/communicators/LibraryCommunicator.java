@@ -4,7 +4,11 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jabb.jabbsee.Constants;
+import com.jabb.jabbsee.managers.AuthManager;
 import com.jabb.jabbsee.models.Library;
+import com.jabb.jabbsee.models.User;
+
+import org.apache.commons.codec.binary.Base64;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,8 +20,11 @@ public class LibraryCommunicator {
 
         private final String TAG = Constants.LOGGING_TAG_PREFIX + LibraryCommunicator.class.getSimpleName();
         private final String URL_ADDRESS = Constants.URL_ROOT_ADDRESS + "library";
+        private AuthManager authManager;
 
-        public LibraryCommunicator(){}
+        public LibraryCommunicator(){
+            authManager = new AuthManager();
+        }
 
 
         public Library getLibrary() throws IOException {
@@ -27,6 +34,13 @@ public class LibraryCommunicator {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setConnectTimeout(8000);
             connection.setRequestMethod("GET");
+
+            User activeUser = authManager.getLoggedInUser();
+            Log.d(TAG, "ActiveUser: " + activeUser.getUsername());
+            String userpassword = activeUser.getUsername() + ":" + activeUser.getPassword();
+            String encodedAsString = new String(Base64.encodeBase64(userpassword.getBytes()));
+            connection.setRequestProperty("Authorization", "Basic " + encodedAsString);
+
 
             int responseCode = connection.getResponseCode();
 
