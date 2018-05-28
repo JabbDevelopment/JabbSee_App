@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             Log.d(TAG, "Do in background");
             try {
-                SerieListHelper.getInstance().updateSerieList();
+                SerieListHelper.getInstance().updateLibraryFromServer();
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;

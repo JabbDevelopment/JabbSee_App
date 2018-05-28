@@ -7,4 +7,7 @@ public class Constants {
 
     public static final String NO_USERNAME = "Vänligen fyll i ditt användarnamn";
     public static final String NO_PASSWORD = "Vänligen fyll i ditt lösenord";
+
+    public static final String SERIE_KEY = "SERIE";
+    public static final String SERIE_INDEX_KEY = "SERIE_INDEX";
 }

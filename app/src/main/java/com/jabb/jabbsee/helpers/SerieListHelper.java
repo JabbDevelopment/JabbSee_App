@@ -3,21 +3,22 @@ package com.jabb.jabbsee.helpers;
 import android.util.Log;
 
 import com.jabb.jabbsee.communicators.LibraryCommunicator;
+import com.jabb.jabbsee.models.Library;
 import com.jabb.jabbsee.models.Serie;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SerieListHelper {
 
     private static SerieListHelper listHelperInstance;
-    private List<Serie> serieList;
+    //private List<Serie> serieList;
+    private Library activeLibrary;
+
     private LibraryCommunicator libraryCommunicator;
 
     private SerieListHelper() {
         libraryCommunicator = new LibraryCommunicator();
-        serieList = new ArrayList<>();
+        //serieList = new ArrayList<>();
     }
 
     public static SerieListHelper getInstance(){
@@ -26,18 +27,23 @@ public class SerieListHelper {
         return listHelperInstance;
     }
 
-    public List<Serie> getActiveSerieList() {
-        return serieList;
+    public Library getActiveLibrary() {
+        return activeLibrary;
     }
 
-    public void updateSerieList() throws IOException {
+    public void updateLibraryFromServer() throws IOException {
 
-        serieList = libraryCommunicator.getLibrary().getSeriesList();
-
-        for(Serie s: serieList) {
+        activeLibrary = libraryCommunicator.getLibrary();
+        //serieList = activeLibrary.getSeriesList();
+        for(Serie s: activeLibrary.getSeriesList()) {
             Log.d("SerieListItem", s.getTitle());
             Log.d("SerieListItem", String.valueOf(s.getSeason()));
             Log.d("SerieListItem", String.valueOf(s.getEpisode()));
         }
+    }
+
+    public void updateSerie(Serie serie, int serieIndex) throws IOException {
+        activeLibrary.getSeriesList().set(serieIndex, serie);
+        libraryCommunicator.updateLibrary(activeLibrary);
     }
 }

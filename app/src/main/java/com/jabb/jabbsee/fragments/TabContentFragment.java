@@ -41,8 +41,8 @@ public class TabContentFragment extends Fragment {
         serieListView = view.findViewById(R.id.serieListView);
 
 
-        final List<Serie> serieList =  SerieListHelper.getInstance().getActiveSerieList();
-        Log.d(TAG, "!!!!!!!!!!!!!!!!SerieList: " + serieList.toString());
+        final List<Serie> serieList =  SerieListHelper.getInstance().getActiveLibrary().getSeriesList();
+        Log.d(TAG, "!!!!!!!!!!!!!!!!SerieList in tabContent: " + serieList.toString());
         for(Serie serie: serieList){
             Log.d(TAG, "Serie title: " + serie.getTitle());
         }
@@ -55,7 +55,9 @@ public class TabContentFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Intent showSerieSelectedActivity = new Intent(getActivity(), SerieSelectedActivity.class);
-                showSerieSelectedActivity.putExtra("com.jabb.SERIE_INDEX", serieList.get(position).getTitle());
+                //showSerieSelectedActivity.putExtra("com.jabb.SERIE_INDEX", serieList.get(position).getTitle());
+                showSerieSelectedActivity.putExtra(Constants.SERIE_INDEX_KEY, position);
+                showSerieSelectedActivity.putExtra(Constants.SERIE_KEY, serieList.get(position));
                 startActivity(showSerieSelectedActivity);
             }
         });
